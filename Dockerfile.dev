@@ -1,0 +1,41 @@
+#####################################################################################################################################################################################################
+###                                                                                                                                                                                               ###
+###   [Build]                                                                                                                                                                                     ###  
+###   docker build -t nodejs-typescript-modern-starter -f Dockerfile.dev .                                                                                                                                     ###
+###                                                                                                                                                                                               ###
+###   [Win:Run]                                                                                                                                                                                   ###
+###   docker run -d -p 5478:5478 -v C:\Projects\scadiot\scadiot-adapter:/app --restart unless-stopped --network scadiot --name scadiot-adapter-dev scadiot-adapter-dev                            ###
+###                                                                                                                                                                                               ###
+###   [Mac:Run]                                                                                                                                                                                   ###
+###   docker run -d -p 5478:5478 -v /Users/ekoseoglu/Projects/scadiot/scadiot-adapter:/app --restart unless-stopped --network scadiot --name scadiot-adapter-dev scadiot-adapter-dev              ###
+###                                                                                                                                                                                               ###
+###   [Linux:Run]                                                                                                                                                                                   ###
+###   docker run -d -p 7238:7238 -v /home/user/Projects/nodejs/typescript-modern-starter:/app --restart unless-stopped --network scadiot --name nodejs-typescript-modern-starter nodejs-typescript-modern-starter            ###
+###                                                                                                                                                                                               ###
+#####################################################################################################################################################################################################
+
+FROM node:alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json
+COPY package.json .
+
+# Install nodemon
+RUN npm i nodemon -g
+
+# Install dependencies
+# RUN npm install
+
+# Install supervisior
+RUN apk --no-cache add supervisor
+
+# Configure supervisord
+COPY docker/dev/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose the port that your app will run on
+EXPOSE 5478
+
+# Start the app
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

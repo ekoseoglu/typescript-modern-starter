@@ -1,4 +1,3 @@
-/* eslint-env node */
 module.exports = {
   extends: [
     /**
@@ -8,13 +7,13 @@ module.exports = {
      * If you want to go with the "default/recommended" version, simply
      * uncomment the following lines in the extends array.
      */
-    // "eslint:recommended",
-    // "plugin:@typescript-eslint/recommended",
-    // "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     /* This prettier extends is used to disable all the formatting rules that
      * are enabled by the different "recommended" rules.
      */
-    // "prettier",
+    "prettier",
   ],
   plugins: ["@typescript-eslint"],
   parser: "@typescript-eslint/parser",
@@ -43,6 +42,7 @@ module.exports = {
       rules: {
         // "eslint" rules
         // check https://eslint.org/docs/latest/rules/ for reference
+        "@typescript-eslint/no-unused-vars": "warn",
         "no-cond-assign": ["error", "always"],
         eqeqeq: ["error"],
         "no-constant-binary-expression": "error",

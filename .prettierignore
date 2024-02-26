@@ -131,11 +131,28 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.yarnrc.yml
 
 # custom added ignores below
-bundle
-dist
-node_modules
+bundle/
+dist/
+node_modules/
 TODO
+
 # prettierignore specific
 .yarn
+yarn.lock
+tsconfig.json
+renovate.json
+README.md
+package.json
+LICENSE
+.vscode/
+.git-hooks/
+.vimspector.json
+.prettierrc
+.prettierignore
+.eslintrc.cjs
+.eslintignore
+.gitignore
+.nvmrc
